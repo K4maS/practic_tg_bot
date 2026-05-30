@@ -13,7 +13,8 @@ def get_from_cite(query):
     payload = {'query': query}
 
     doc = requests.get(url, headers=headers, params=payload)
-
+    doc.encoding = 'utf-8'
+    
     if doc.status_code == 200:
         soup = BeautifulSoup(doc.text, 'html.parser')
         return soup.body.get_text(separator='\n', strip=True)
